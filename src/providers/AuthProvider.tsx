@@ -60,7 +60,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   if (loading) {
-    return <AppSkeleton variant="page" />;
+    return <AppSkeleton count={3} variant="page" />;
   }
 
   return (
