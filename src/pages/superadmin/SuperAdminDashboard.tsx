@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAdmins, updateUserApproval } from "@/store/user/usersSlice";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AppSkeleton from "@/components/common/AppSkeleton";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const SuperAdminDashboard = () => {
-  const dispatch = useDispatch();
-  const { users: admins, loading } = useSelector((state: any) => state.users);
+  const dispatch = useAppDispatch();
+  const { users: admins, loading } = useAppSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(fetchAdmins() as any);
+    dispatch(fetchAdmins());
   }, [dispatch]);
 
   if (loading) {

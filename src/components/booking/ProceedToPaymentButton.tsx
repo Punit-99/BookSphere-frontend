@@ -4,7 +4,7 @@ import {
   clearPaymentState,
   createCheckoutSession,
 } from "@/store/payment/paymentSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 type Props = {
   movieId: string;
@@ -23,9 +23,9 @@ const ProceedToPaymentButton = ({
   pricePerTicket,
   disabled,
 }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { loading, checkoutUrl } = useSelector((state) => state.payment);
+  const { loading, checkoutUrl } = useAppSelector((state) => state.payment);
 
   const handlePayment = async () => {
     const resultAction = await dispatch(

@@ -1,18 +1,18 @@
 import MovieCard from "@/components/common/MovieCard";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchMovies } from "@/store/movies/movieSlice";
 import AppSkeleton from "@/components/common/AppSkeleton";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 export default function SelectMovieStep({ selected, onSelect }: any) {
-  const dispatch = useDispatch();
-  const { movies, loading } = useSelector((s: any) => s.movies);
+  const dispatch = useAppDispatch();
+  const { movies, loading } = useAppSelector((s) => s.movies);
 
   useEffect(() => {
     if (!movies.length) {
       dispatch(fetchMovies());
     }
-  }, []);
+  }, [dispatch, movies.length]);
 
   if (loading) {
     return (
