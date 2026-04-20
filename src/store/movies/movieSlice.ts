@@ -36,7 +36,9 @@ export const fetchMovies = createAsyncThunk(
   "movies/fetch",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await graphqlRequest(GET_MOVIES);
+      const res = (await graphqlRequest(GET_MOVIES)) as {
+        adminMovies: Movie[];
+      };
 
       return res.adminMovies || [];
     } catch (err: any) {

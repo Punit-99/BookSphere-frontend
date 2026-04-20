@@ -31,7 +31,10 @@ type HomePageState = {
 export const fetchHomeMovies = createAsyncThunk(
   "homePageMovies/fetchHomeMovies",
   async () => {
-    const res = await graphqlRequest(GET_HOME_MOVIES);
+    const res = (await graphqlRequest(GET_HOME_MOVIES)) as {
+      homeMovies: Movie[];
+    };
+
     return res.homeMovies;
   },
 );
@@ -39,7 +42,10 @@ export const fetchHomeMovies = createAsyncThunk(
 export const fetchLatestMovies = createAsyncThunk(
   "homePageMovies/fetchLatestMovies",
   async () => {
-    const res = await graphqlRequest(GET_LATEST_MOVIES);
+    const res = (await graphqlRequest(GET_LATEST_MOVIES)) as {
+      latestMovies: Movie[];
+    };
+
     return res.latestMovies;
   },
 );

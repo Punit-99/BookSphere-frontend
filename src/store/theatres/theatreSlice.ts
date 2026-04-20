@@ -36,9 +36,11 @@ export const fetchTheatres = createAsyncThunk(
   "theatres/fetch",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await graphqlRequest(GET_THEATRES);
+      const res = (await graphqlRequest(GET_THEATRES)) as {
+        adminTheatres: Theatre[];
+      };
 
-      return res?.adminTheatres || [];
+      return res.adminTheatres || [];
     } catch (err: any) {
       return rejectWithValue(err.message);
     }

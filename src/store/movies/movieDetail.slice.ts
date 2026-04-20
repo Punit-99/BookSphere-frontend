@@ -24,9 +24,11 @@ type MovieDetailState = {
 export const fetchMovieById = createAsyncThunk(
   "movieDetail/fetchMovieById",
   async (movieId: string) => {
-    const res = await graphqlRequest(GET_MOVIE_BY_ID, {
+    const res = (await graphqlRequest(GET_MOVIE_BY_ID, {
       id: movieId,
-    });
+    })) as {
+      movie: Movie;
+    };
 
     return res.movie;
   },

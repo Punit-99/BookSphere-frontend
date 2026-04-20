@@ -8,7 +8,10 @@ export const fetchMyBookings = createAsyncThunk(
   "myBookings/fetch",
   async (_, { rejectWithValue }) => {
     try {
-      const data = await graphqlRequest(GET_MY_BOOKINGS);
+      const data = (await graphqlRequest(GET_MY_BOOKINGS)) as {
+        myBookings: any[];
+      };
+
       return data.myBookings;
     } catch (err: any) {
       return rejectWithValue(err.message || "Failed to fetch bookings");

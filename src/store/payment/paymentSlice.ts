@@ -67,7 +67,7 @@ const paymentSlice = createSlice({
       })
       .addCase(createCheckoutSession.fulfilled, (state, action) => {
         state.loading = false;
-        state.checkoutUrl = action.payload?.url || null;
+        state.checkoutUrl = (action.payload as { url?: string })?.url || null;
       })
       .addCase(createCheckoutSession.rejected, (state, action: any) => {
         state.loading = false;

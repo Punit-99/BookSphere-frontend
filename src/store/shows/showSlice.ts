@@ -35,7 +35,13 @@ export const fetchShows = createAsyncThunk(
   "shows/fetch",
   async (movieId: string | undefined, { rejectWithValue }) => {
     try {
-      const res = await graphqlRequest(GET_SHOWS, movieId ? { movieId } : {});
+      const res = (await graphqlRequest(
+        GET_SHOWS,
+        movieId ? { movieId } : {},
+      )) as {
+        adminShows: Show[];
+      };
+
       return res.adminShows || [];
     } catch (err: any) {
       return rejectWithValue(err.message);

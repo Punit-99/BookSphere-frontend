@@ -2,10 +2,20 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { graphqlRequest } from "@/api/graphql";
 import { GET_BOOKING_PAGE } from "@/api/graphql/bookings/booking.queries";
 
+type BookingPageResponse = {
+  bookingPage: {
+    movie: any;
+    theatres: any[];
+  };
+};
+
 export const fetchBookingPage = createAsyncThunk(
   "booking/fetchBookingPage",
   async (movieId: string) => {
-    const res = await graphqlRequest(GET_BOOKING_PAGE, { movieId });
+    const res = (await graphqlRequest(GET_BOOKING_PAGE, {
+      movieId,
+    })) as BookingPageResponse;
+
     return res.bookingPage;
   },
 );

@@ -3,8 +3,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { graphqlRequest } from "@/api/graphql";
 import { GET_CONSTANTS } from "@/api/graphql/common/constant.querires";
 
+type ConstantsResponse = {
+  constants: {
+    genres: string[];
+    languages: string[];
+    locations: string[];
+  };
+};
+
 export const fetchConstants = createAsyncThunk("constants/fetch", async () => {
-  const res = await graphqlRequest(GET_CONSTANTS);
+  const res = (await graphqlRequest(GET_CONSTANTS)) as ConstantsResponse;
   return res.constants;
 });
 
