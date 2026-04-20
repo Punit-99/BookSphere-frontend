@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "react-redux";
 
 import DateTimePicker from "@/components/common/DateTimePicker";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,7 @@ export default function ShowFormStep({
   show,
   onSuccess,
 }: ShowFormProps) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { register, handleSubmit, control, setValue } = useForm<any>();
 

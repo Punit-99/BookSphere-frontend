@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,10 +23,10 @@ const CreateMovieForm = ({
   onSuccess,
   onClose,
 }: MovieProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const genres = useSelector((s: any) => s.constant.genres);
-  const languages = useSelector((s: any) => s.constant.languages);
+  const genres = useAppSelector((s: any) => s.constant.genres);
+  const languages = useAppSelector((s: any) => s.constant.languages);
 
   const {
     register,

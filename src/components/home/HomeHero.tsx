@@ -1,11 +1,11 @@
 import ImageCarousel from "@/components/common/ImageCarousel";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchHomeMovies } from "@/store/homePageMovies/homePageMoviesSlice";
 
 const HomeHero = () => {
-  const dispatch = useDispatch();
-  const { homeMovies, loading } = useSelector((s: any) => s.homePageMovies);
+  const dispatch = useAppDispatch();
+  const { homeMovies, loading } = useAppSelector((s: any) => s.homePageMovies);
 
   useEffect(() => {
     if (!homeMovies.length) {

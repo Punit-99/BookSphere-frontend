@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from "react-redux";
 import type { RootState } from "@/store/store";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ interface NavbarProps {
 
 const Navbar = ({ showSiteName = true, leftContent }: NavbarProps) => {
   const { openAuth } = useAuthModal();
-  const user = useSelector((state: RootState) => state.auth.user);
+  const user = useAppSelector((state: RootState) => state.auth.user);
 
   return (
     <div className="flex justify-between items-center p-4 border-b">

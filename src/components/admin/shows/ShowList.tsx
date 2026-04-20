@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,8 @@ import type { ShowListMap } from "@/lib/types";
 import AppSkeleton from "@/components/common/AppSkeleton";
 
 const ShowList = ({ movieId, onEdit }: any) => {
-  const dispatch = useDispatch();
-  const { shows, loading } = useSelector((s: any) => s.shows);
+  const dispatch = useAppDispatch();
+  const { shows, loading } = useAppSelector((s: any) => s.shows);
 
   useEffect(() => {
     dispatch(fetchShows(movieId) as any);

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import MovieCard from "@/components/common/MovieCard";
 import { fetchLatestMovies } from "@/store/homePageMovies/homePageMoviesSlice";
 
 const LatestReleases = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { latestMovies, loading } = useSelector((s: any) => s.homePageMovies);
+  const { latestMovies, loading } = useAppSelector((s: any) => s.homePageMovies);
 
   useEffect(() => {
     if (!latestMovies?.length) {

@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "react-redux";
 import { setAuth, logout } from "@/store/auth/authSlice";
 import { graphqlRequest } from "@/api/graphql";
 
@@ -28,7 +28,7 @@ const AuthUIContext = createContext<AuthUIContextType | null>(null);
    PROVIDER
 ========================= */
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);

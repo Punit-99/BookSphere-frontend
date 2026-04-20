@@ -97,9 +97,10 @@ export type DateTimePickerProps = {
   mode?: "date" | "datetime";
 };
 
-type Image = {
+export type Image = {
   url: string;
-  public_id?: string;
+  title?: string;
+  description?: string;
 };
 
 export type ImageCarouselProps = {

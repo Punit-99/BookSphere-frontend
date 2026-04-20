@@ -2,12 +2,12 @@
 
 import { fetchMyBookings } from "@/store/booking/myBookingSlice";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const MyBookingsPage = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch<any>();
 
-  const { bookings, loading, error } = useSelector(
+  const { bookings, loading, error } = useAppSelector(
     (state: any) => state.myBookings,
   );
 

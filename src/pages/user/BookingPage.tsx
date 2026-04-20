@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 import { fetchBookingPage } from "@/store/booking/bookingSlice";
 import { BookingPanel } from "@/components/booking/BookingPanel";
@@ -12,9 +12,9 @@ const MAX_TICKETS = 6;
 
 const BookingPage = () => {
   const { movieId } = useParams();
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch<any>();
 
-  const { movie, theatres, loading } = useSelector(
+  const { movie, theatres, loading } = useAppSelector(
     (state: any) => state.booking,
   );
 

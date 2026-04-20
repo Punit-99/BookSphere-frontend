@@ -1,6 +1,6 @@
 // path: src/hooks/useAuth.ts
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import type { RootState } from "@/store/store";
 
 import { setAuth, logout as logoutAction } from "@/store/auth/authSlice";
@@ -33,10 +33,10 @@ const LOGOUT_MUTATION = `
 `;
 
 export const useAuth = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   // ✅ GET STATE FROM REDUX
-  const { user, isAuthenticated, loading } = useSelector(
+  const { user, isAuthenticated, loading } = useAppSelector(
     (state: RootState) => state.auth,
   );
 

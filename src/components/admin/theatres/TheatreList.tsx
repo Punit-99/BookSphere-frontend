@@ -1,5 +1,6 @@
+// src/components/admin/theatres/TheatreList.tsx
+
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
 import CommonDialog from "@/components/common/CommonDialog";
@@ -8,23 +9,27 @@ import TheatreCard from "@/components/common/TheatreCard";
 
 import { fetchTheatres, deleteTheatre } from "@/store/theatres/theatreSlice";
 import AppSkeleton from "@/components/common/AppSkeleton";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
-const TheatreList = () => {
-  const dispatch = useDispatch();
-  const { theatres, loading } = useSelector((s: any) => s.theatres);
+type Props = {
+  refreshKey?: number;
+};
+
+const TheatreList = ({ refreshKey }: Props) => {
+  const dispatch = useAppDispatch();
+  const { theatres, loading } = useAppSelector((s) => s.theatres);
 
   const [editingTheatre, setEditingTheatre] = useState<any>(null);
 
   useEffect(() => {
-    dispatch(fetchTheatres() as any);
-  }, [dispatch]);
+    dispatch(fetchTheatres());
+  }, [dispatch, refreshKey]);
 
   const handleDelete = async (id: string) => {
-    await dispatch(deleteTheatre(id) as any);
+    await dispatch(deleteTheatre(id));
     toast.success("Theatre deleted 🎉");
   };
 
-  // ================= LOADING =================
   if (loading) {
     return (
       <div className="grid grid-cols-4 gap-4 p-4">
@@ -33,7 +38,6 @@ const TheatreList = () => {
     );
   }
 
-  // ================= EMPTY STATE =================
   if (!theatres.length) {
     return (
       <div className="flex items-center justify-center h-[300px] text-gray-500 border rounded-lg">
@@ -42,7 +46,6 @@ const TheatreList = () => {
     );
   }
 
-  // ================= UI =================
   return (
     <div className="grid grid-cols-4 gap-4 p-4">
       {theatres.map((t: any) => (
@@ -55,7 +58,6 @@ const TheatreList = () => {
         />
       ))}
 
-      {/* EDIT MODAL */}
       <CommonDialog
         title="Edit Theatre"
         open={!!editingTheatre}

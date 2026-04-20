@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toast } from "sonner";
 import CommonDialog from "@/components/common/CommonDialog";
 import CreateMovieForm from "./CreateMovieForm";
@@ -9,8 +9,8 @@ import MovieCard from "@/components/common/MovieCard";
 import AppSkeleton from "@/components/common/AppSkeleton";
 
 const MovieList = () => {
-  const dispatch = useDispatch();
-  const { movies, loading } = useSelector((s: any) => s.movies);
+  const dispatch = useAppDispatch();
+  const { movies, loading } = useAppSelector((s: any) => s.movies);
 
   const [editingMovie, setEditingMovie] = useState<any>(null);
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toast } from "sonner";
 
 import { theatreSchema } from "@/lib/schemas";
@@ -23,9 +23,9 @@ import { createTheatre, updateTheatre } from "@/store/theatres/theatreSlice";
 import { fetchConstants } from "@/store/constant/ConstantsSlice";
 
 const TheatreForm = ({ mode, initialData, onSuccess, onClose }: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const locations = useSelector((s: any) => s.constant.locations);
+  const locations = useAppSelector((s: any) => s.constant.locations);
 
   const {
     register,

@@ -1,12 +1,12 @@
 import TheatreCard from "@/components/common/TheatreCard";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchTheatres } from "@/store/theatres/theatreSlice";
 import AppSkeleton from "@/components/common/AppSkeleton";
 
 export default function SelectTheatreStep({ selected, onSelect }: any) {
-  const dispatch = useDispatch();
-  const { theatres, loading } = useSelector((s: any) => s.theatres);
+  const dispatch = useAppDispatch();
+  const { theatres, loading } = useAppSelector((s: any) => s.theatres);
 
   useEffect(() => {
     if (!theatres.length) {
