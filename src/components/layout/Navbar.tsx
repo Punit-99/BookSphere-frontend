@@ -1,4 +1,4 @@
-import { useAppSelector } from "react-redux";
+import { useAppSelector } from "@/store/hooks";
 import type { RootState } from "@/store/store";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { Button } from "@/components/ui/button";

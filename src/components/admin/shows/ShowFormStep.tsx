@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "react-redux";
+import { useAppDispatch } from "@/store/hooks";
 
 import DateTimePicker from "@/components/common/DateTimePicker";
 import { Input } from "@/components/ui/input";

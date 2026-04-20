@@ -1,5 +1,5 @@
 import TheatreCard from "@/components/common/TheatreCard";
-import { useAppSelector, useAppDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { useEffect } from "react";
 import { fetchTheatres } from "@/store/theatres/theatreSlice";
 import AppSkeleton from "@/components/common/AppSkeleton";

@@ -1,10 +1,11 @@
 import { useEffect, useState, createContext } from "react";
-import { useAppDispatch } from "react-redux";
+
 import { setAuth, logout } from "@/store/auth/authSlice";
 import { graphqlRequest } from "@/api/graphql";
 
 import AuthDialog from "@/components/auth/AuthDialog";
 import AppSkeleton from "@/components/common/AppSkeleton";
+import { useAppDispatch } from "@/store/hooks";
 
 interface User {
   id: string;
