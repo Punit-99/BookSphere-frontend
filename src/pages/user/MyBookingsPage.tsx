@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const MyBookingsPage = () => {
-  const dispatch = useAppDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const { bookings, loading, error } = useAppSelector(
     (state: any) => state.myBookings,

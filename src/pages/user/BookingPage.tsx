@@ -12,7 +12,7 @@ const MAX_TICKETS = 6;
 
 const BookingPage = () => {
   const { movieId } = useParams();
-  const dispatch = useAppDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const { movie, theatres, loading } = useAppSelector(
     (state: any) => state.booking,
