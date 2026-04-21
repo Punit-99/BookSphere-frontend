@@ -23,6 +23,7 @@ import ShowsPage from "./pages/admin/ShowsPage";
 import PaymentFailed from "./pages/common/PaymentFailed";
 import PaymentSuccess from "./pages/common/PaymentSuccess";
 import MyBookingsPage from "./pages/user/MyBookingsPage";
+import NotFound from "./pages/common/NotFound";
 
 function App() {
   return (
@@ -71,6 +72,9 @@ function App() {
               </Route>
             </Route>
           </Route>
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
