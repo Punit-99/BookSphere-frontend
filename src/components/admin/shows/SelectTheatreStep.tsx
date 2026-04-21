@@ -30,8 +30,6 @@ export default function SelectTheatreStep({ selected, onSelect }: any) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold">Select Theatre</h2>
-
       {selected && (
         <div className="text-sm text-green-600">Selected: {selected.name}</div>
       )}

@@ -27,14 +27,12 @@ export default function SelectMovieStep({ selected, onSelect }: any) {
   }
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-lg font-semibold">Select Movie</h2>
-
+    <div className="space-y-4 w-full">
       {selected && (
         <div className="text-sm text-green-600">Selected: {selected.title}</div>
       )}
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
         {movies.map((m: any) => (
           <MovieCard
             key={m.id}

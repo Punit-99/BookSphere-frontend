@@ -41,7 +41,7 @@ export const useAuth = () => {
   );
 
   const role = user?.role || null;
-  console.log(role);
+
   // ✅ ACTIONS
   const login = async (values: { email: string; password: string }) => {
     try {
