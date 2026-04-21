@@ -47,17 +47,27 @@ function App() {
           <Route path="/cancel" element={<PaymentFailed />} />
 
           {/* ADMIN */}
+          {/* ADMIN */}
           <Route element={<RequireAuth />}>
-            <Route element={<AdminLayout />}>
-              <Route path="/admin">
-                <Route index element={<AdminDashboard />} />
-                <Route path="theatres" element={<TheatresPage />} />
-                <Route path="movies" element={<MoviesPage />} />
-                <Route path="shows" element={<ShowsPage />} />
+            <Route element={<RoleGuard allowedRoles={[ROLES.ADMIN]} />}>
+              <Route element={<AdminLayout />}>
+                <Route path="/admin">
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="theatres" element={<TheatresPage />} />
+                  <Route path="movies" element={<MoviesPage />} />
+                  <Route path="shows" element={<ShowsPage />} />
+                </Route>
               </Route>
+            </Route>
+          </Route>
 
-              <Route path="/superadmin">
-                <Route index element={<SuperAdminDashboard />} />
+          {/* SUPER ADMIN */}
+          <Route element={<RequireAuth />}>
+            <Route element={<RoleGuard allowedRoles={[ROLES.SUPERADMIN]} />}>
+              <Route element={<AdminLayout />}>
+                <Route path="/superadmin">
+                  <Route index element={<SuperAdminDashboard />} />
+                </Route>
               </Route>
             </Route>
           </Route>
