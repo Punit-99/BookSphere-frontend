@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
 import type { DateTimePickerProps } from "@/lib/types";
 import { isValidDate } from "@/lib/utils";
 
@@ -17,11 +18,11 @@ export default function DateTimePicker({
   value,
   onChange,
   mode = "date",
+  minDate,
 }: DateTimePickerProps) {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const [time, setTime] = useState("18:00");
+  const [time, setTime] = useState("00:00");
 
-  // ✅ SAFE SYNC
   useEffect(() => {
     if (value && isValidDate(value)) {
       setDate(value);
@@ -29,10 +30,13 @@ export default function DateTimePicker({
     }
   }, [value]);
 
+  const normalizeDate = (date: Date) =>
+    new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
   const handleDateSelect = (selected: Date | undefined) => {
     if (!selected) return;
 
-    let final = new Date(selected);
+    const final = new Date(selected);
 
     if (mode === "datetime") {
       const [h, m] = time.split(":");
@@ -40,6 +44,8 @@ export default function DateTimePicker({
       if (!isNaN(Number(h)) && !isNaN(Number(m))) {
         final.setHours(Number(h));
         final.setMinutes(Number(m));
+        final.setSeconds(0);
+        final.setMilliseconds(0);
       }
     }
 
@@ -61,10 +67,13 @@ export default function DateTimePicker({
     if (!isNaN(Number(h)) && !isNaN(Number(m))) {
       updated.setHours(Number(h));
       updated.setMinutes(Number(m));
+      updated.setSeconds(0);
+      updated.setMilliseconds(0);
     }
 
     if (!isValidDate(updated)) return;
 
+    setDate(updated);
     onChange(updated);
   };
 
@@ -74,12 +83,26 @@ export default function DateTimePicker({
         <PopoverTrigger asChild>
           <Button variant="outline" className="w-[200px] justify-start">
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date && isValidDate(date) ? format(date, "PPP") : "Pick date"}
+
+            {date && isValidDate(date) ? (
+              format(date, "PPP")
+            ) : (
+              <span className="text-muted-foreground">Pick date</span>
+            )}
           </Button>
         </PopoverTrigger>
 
         <PopoverContent className="w-auto p-0">
-          <Calendar mode="single" selected={date} onSelect={handleDateSelect} />
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={handleDateSelect}
+            disabled={(currentDate) => {
+              if (!minDate) return false;
+
+              return normalizeDate(currentDate) < normalizeDate(minDate);
+            }}
+          />
         </PopoverContent>
       </Popover>
 

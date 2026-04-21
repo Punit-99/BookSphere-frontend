@@ -87,6 +87,11 @@ export default function ShowFormStep({
             mode="datetime"
             value={field.value || null}
             onChange={field.onChange}
+            minDate={
+              movie?.releaseDate
+                ? new Date(Number(movie.releaseDate))
+                : undefined
+            }
           />
         )}
       />

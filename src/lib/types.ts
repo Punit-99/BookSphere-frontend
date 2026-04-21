@@ -92,9 +92,10 @@ export type SteppingStepProps = {
 };
 
 export type DateTimePickerProps = {
-  value?: Date;
+  value: Date | null;
   onChange: (date: Date) => void;
   mode?: "date" | "datetime";
+  minDate?: Date;
 };
 
 export type Image = {

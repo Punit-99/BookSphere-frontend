@@ -23,8 +23,23 @@ export default function CreateShowWizard({ onClose, initialShow }: any) {
     },
     {
       label: "Movie",
-      content: <SelectMovieStep selected={movie} onSelect={setMovie} />,
+      content: (
+        <SelectMovieStep
+          selected={movie}
+          onSelect={(movie) => {
+            console.log("Selected movie:", movie);
+            setMovie(movie);
+          }}
+        />
+      ),
     },
+    //     <SelectMovieStep
+    //   selected={selectedMovie}
+    //   onSelect={(movie) => {
+    //     console.log("Selected movie:", movie);
+    //     setSelectedMovie(movie);
+    //   }}
+    // />
     {
       label: "Create Show",
       content: (
